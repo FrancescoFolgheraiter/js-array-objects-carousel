@@ -29,5 +29,91 @@ SVOLGIMENTO
     -titolo
     -descrizione
 2)creo tramite markup statico il carousel in pagina index
-3)
+3)rimuovo la parte di mark up statico e vado a creare dinamicamente la stessa tramite l'array dato
+4)aggiungo il ciclo infinito
 */
+
+//array di oggetti che uso per popolare il mio DOM
+const images = [
+    {
+        url: 'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg',
+        title: 'Svezia',
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
+    },
+
+    {
+        url: 'https://static1.evcdn.net/images/reduction/1513757_w-1920_h-1080_q-70_m-crop.jpg',
+        title: 'Perù',
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
+    },
+
+    {
+        url: 'https://img.itinari.com/pages/images/original/0d3ed180-d22d-48e8-84df-19c4d888b41f-62-crop.jpg?ch=DPR&dpr=2.625&w=1600&s=7ebd4b5a9e045f41b4e0c7c75d298d6c',
+        title: 'Chile',
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
+    },
+    {
+        url: 'https://static1.evcdn.net/images/reduction/1583177_w-1920_h-1080_q-70_m-crop.jpg',
+        title: 'Argentina',
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
+    },
+    {
+        url: 'https://cdn.sanity.io/images/24oxpx4s/prod/ed09eff0362396772ad50ec3bfb728d332eb1c30-3200x2125.jpg?w=1600&h=1063&fit=crop',
+        title: 'Colombia',
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
+    },
+];
+//dichiarazione di variabile dove verrà inserita la struttura nel dom
+const containerImg = document.querySelector(".container-carousel div:last-child");
+//dichiarazione di variabili contenenti il collegamento ai pulsanti del dom
+const pulsanteUp = document.querySelector(".up");
+const pulsanteDown = document.querySelector(".down");
+
+
+//ciclo di lettura array
+for (let i = 0; i < images.length; i++) {
+    if (i == 0){
+        containerImg.innerHTML += `
+            <div class="item active">
+                <img src="${images[i].url}" alt="">
+            </div>
+        `;    
+    }
+    else{
+        containerImg.innerHTML += `
+        <div class="item">
+            <img src="${images[i].url}" alt="">
+        </div>
+    `;
+    }
+}
+//impementazione dinamica di "spostamento" immagini del carousel con ciclo infinito
+let n = 0;
+const items = document.querySelectorAll(".item")
+pulsanteUp.addEventListener("click", function () {
+if(n < (items.length -1)){
+    items[n].classList.remove("active")
+    n++;
+    items[n].classList.add("active")
+}
+else if(n == items.length-1){
+    items[n].classList.remove("active")
+    n = 0;
+    items[n].classList.add("active")
+}
+
+})
+
+pulsanteDown.addEventListener("click", function () {
+    if(n > 0){
+        items[n].classList.remove("active")
+        n--;
+        items[n].classList.add("active")
+    }
+    else if(n == 0){
+        items[n].classList.remove("active")
+        n = items.length - 1;
+        items[n].classList.add("active")
+    }
+})
+    
