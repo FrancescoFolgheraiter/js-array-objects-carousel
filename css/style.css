@@ -49,15 +49,15 @@ main>div:first-child{
     background-color: rgba(149, 255, 246, 0.644);
     border: 1px solid #220088;
     border-radius: 50%;
-    left: 50%;
-    transform: translatex(-50%);
+    top: 50%;
+    transform: translatey(-50%);
     z-index: 1;
 }
-.up{
-    top: 10px;
+.right{
+    right:10px;
 }
-.down{
-    bottom: 10px;
+.left{
+    left:10px;
 }
 .item{
     position: absolute;
@@ -68,6 +68,15 @@ main>div:first-child{
     height: 100%;
     border:1px solid grey;
 }
+.text-img{
+    background-color:rgba(0, 0, 0, 0.5);
+    color:white;
+    position: absolute;
+    bottom:0;
+    left:0;
+    display: none;
+}
+
 .active{
     display:block;
 }
